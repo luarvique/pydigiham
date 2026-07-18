@@ -71,6 +71,11 @@ class YsfDecoder(Decoder):
         ...
 
 
+class P25Decoder(Decoder):
+    def __init__(self):
+        ...
+
+
 class PocsagDecoder(Decoder):
     def __init__(self):
         ...

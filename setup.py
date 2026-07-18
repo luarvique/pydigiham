@@ -47,6 +47,7 @@ setup(
                 "src/gfskdemodulator.cpp",
                 "src/dmrdecoder.cpp",
                 "src/ysfdecoder.cpp",
+                "src/p25decoder.cpp",
                 "src/pocsagdecoder.cpp",
                 "src/pickleserializer.cpp",
             ],

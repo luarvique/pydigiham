@@ -13,6 +13,7 @@
 #include "nxdndecoder.hpp"
 #include "dmrdecoder.hpp"
 #include "ysfdecoder.hpp"
+#include "p25decoder.hpp"
 #include "pocsagdecoder.hpp"
 
 #include <digiham/version.hpp>
@@ -93,6 +94,12 @@ PyInit_modules(void) {
     Py_INCREF(DecoderType);
     bases = PyTuple_Pack(1, DecoderType);
     if (bases == NULL) return NULL;
+    PyObject* P25DecoderType = PyType_FromSpecWithBases(&P25DecoderSpec, bases);
+    if (P25DecoderType == NULL) return NULL;
+
+    Py_INCREF(DecoderType);
+    bases = PyTuple_Pack(1, DecoderType);
+    if (bases == NULL) return NULL;
     PyObject* PocsagDecoderType = PyType_FromSpecWithBases(&PocsagDecoderSpec, bases);
     if (PocsagDecoderType == NULL) return NULL;
 
@@ -122,6 +129,8 @@ PyInit_modules(void) {
     PyModule_AddObject(m, "DmrDecoder", DmrDecoderType);
 
     PyModule_AddObject(m, "YsfDecoder", YsfDecoderType);
+
+    PyModule_AddObject(m, "P25Decoder", P25DecoderType);
 
     PyModule_AddObject(m, "PocsagDecoder", PocsagDecoderType);
 
