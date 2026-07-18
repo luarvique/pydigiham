@@ -40,11 +40,25 @@ class YsfMode(DynamicMode):
             return self.modeTable[code]
 
 
+class P25Mode(DynamicMode):
+    def __init__(self):
+        self.modeTable = {
+            0: TableMode(33),
+            2: TableMode(34),
+            3: ControlWordMode(b'\x05\x58\x08\x6b\x10\x30\x00\x00\x00\x00\x01\x90')
+        }
+
+    def getModeFor(self, code: int):
+        if code in self.modeTable:
+            return self.modeTable[code]
+
+
 class Modes:
     DmrMode = TableMode(33)
     DStarMode = ControlWordMode(b'\x01\x30\x07\x63\x40\x00\x00\x00\x00\x00\x00\x48')
     NxdnMode = TableMode(33)
     YsfMode = YsfMode()
+    P25Mode = P25Mode()
 
 
 class ServerError(Exception):
