@@ -82,22 +82,5 @@ class PocsagDecoder(Decoder):
 
 
 class EasyPalDecoder(Module):
-    """
-    Decodes EasyPal ("digital SSTV") transmissions, which are HamDRM: a DRM mode in a ~2.4kHz audio channel
-    that carries files, usually JPEG images.
-
-    Input is mono audio at 12kHz, as Format.FLOAT. Output is Format.CHAR, with one record for every file that
-    has been received completely:
-
-        "EPAL"       4 bytes, magic
-        length       4 bytes, little endian, size of the file
-        nameLength   1 byte
-        name         file name as announced by the sender (may be empty)
-        callLength   1 byte
-        callsign     callsign of the sender (may be empty)
-        data         <length> bytes
-
-    With raw=True, only the bytes of the files are written.
-    """
     def __init__(self, raw: bool = False):
         ...
