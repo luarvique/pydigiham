@@ -49,6 +49,7 @@ setup(
                 "src/ysfdecoder.cpp",
                 "src/p25decoder.cpp",
                 "src/pocsagdecoder.cpp",
+                "src/easypaldecoder.cpp",
                 "src/pickleserializer.cpp",
             ],
             language="c++",

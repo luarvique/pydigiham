@@ -15,6 +15,7 @@
 #include "ysfdecoder.hpp"
 #include "p25decoder.hpp"
 #include "pocsagdecoder.hpp"
+#include "easypaldecoder.hpp"
 
 #include <digiham/version.hpp>
 
@@ -103,6 +104,11 @@ PyInit_modules(void) {
     PyObject* PocsagDecoderType = PyType_FromSpecWithBases(&PocsagDecoderSpec, bases);
     if (PocsagDecoderType == NULL) return NULL;
 
+    bases = PyTuple_Pack(1, getModuleType());
+    if (bases == NULL) return NULL;
+    PyObject* EasyPalDecoderType = PyType_FromSpecWithBases(&EasyPalDecoderSpec, bases);
+    if (EasyPalDecoderType == NULL) return NULL;
+
     PyObject *m = PyModule_Create(&pycsdrmodule);
     if (m == NULL) {
         return NULL;
@@ -133,6 +139,8 @@ PyInit_modules(void) {
     PyModule_AddObject(m, "P25Decoder", P25DecoderType);
 
     PyModule_AddObject(m, "PocsagDecoder", PocsagDecoderType);
+
+    PyModule_AddObject(m, "EasyPalDecoder", EasyPalDecoderType);
 
     PyObject* digihamVersion = PyUnicode_FromStringAndSize(Digiham::version.c_str(), Digiham::version.length());
     if (digihamVersion == NULL) return NULL;
